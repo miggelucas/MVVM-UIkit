@@ -14,9 +14,24 @@ protocol IMCViewControlerDelegate: AnyObject {
 protocol IMCViewModelProtocol {
     func IMC(_ mass: Double, _ height: Double) -> Double
     func changeTextAndImageResult(_ resultIMC: Double) -> (subtitleResultLabel: String, imageName: String)
+    func converterButtonPressed()
+    func userDidUpdateHeitgh(newValue: String)
+    func userDidUpdateMass(newValue: String)
 }
 
 class IMCViewModel: IMCViewModelProtocol {
+    
+    weak var delegate: IMCViewControlerDelegate?
+    
+    var mass: Double?
+    var height: Double?
+    
+    func converterButtonPressed() {
+        guard let safeMass = mass else { return }
+        guard let safeHeight = height else { return }
+        delegate?.showVC2(safeMass, safeHeight)
+        
+    }
     
     func IMC(_ mass: Double, _ height: Double) -> Double{
         return mass/pow(height, 2) * 10000.0
@@ -44,4 +59,13 @@ class IMCViewModel: IMCViewModelProtocol {
         }
     }
     
+    
+    func userDidUpdateHeitgh(newValue: String) {
+        self.height = Double(newValue)
+    }
+    
+    func userDidUpdateMass(newValue: String) {
+        self.mass = Double(newValue)
+        
+    }
 }

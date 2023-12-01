@@ -25,12 +25,13 @@ final class CoordinatorManager: Coordinator {
     
     func start() {
         
-        let rootViewController = IMCViewController(IMCViewModel())
-        rootViewController.delegate = self
+        let viewModel = IMCViewModel()
+        viewModel.delegate = self
+        let rootViewController = IMCViewController(viewModel)
         navigationController.pushViewController(rootViewController, animated: false)
     }
     
-    func changeToVC2(_ mass: Double, _ height: Double) {
+    func navigateToConvertViewController(_ mass: Double, _ height: Double) {
 
         let vc = ConverterViewController(ConverterViewModel(mass: mass, height: height))
         navigationController.pushViewController(vc, animated: true)
@@ -41,7 +42,7 @@ final class CoordinatorManager: Coordinator {
 
 extension CoordinatorManager: IMCViewControlerDelegate {
     func showVC2(_ massLibra: Double, _ height: Double) {
-        changeToVC2(massLibra, height)
+        navigateToConvertViewController(massLibra, height)
     }
     
 

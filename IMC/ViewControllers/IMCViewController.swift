@@ -8,10 +8,13 @@
 import UIKit
 
 class IMCViewController: UIViewController{
+    enum TextFieldTags: Int, CaseIterable {
+        case massTextfield, heightTextfield
+    }
+    
     // MARK: - PUBLIC PROPERTIES
     
     var viewModel: IMCViewModelProtocol
-    weak var delegate: IMCViewControlerDelegate?
     
     // MARK: - UI
     
@@ -119,13 +122,15 @@ class IMCViewController: UIViewController{
         IMCtitle.text = "IMC"
         IMCtitle.tintColor = .black
         
+        massTextField.tag = TextFieldTags.massTextfield.rawValue
         massTextField.backgroundColor = .systemGray2
         massTextField.tintColor = .black
         massTextField.placeholder = "Massa(kg)"
         massTextField.textAlignment = .center
         massTextField.keyboardType = UIKeyboardType.numberPad
         massTextField.delegate = self
-        
+    
+        heightTextField.tag = TextFieldTags.heightTextfield.rawValue
         heightTextField.backgroundColor = .systemGray2
         heightTextField.tintColor = .black
         heightTextField.placeholder = "Altura(cm)"
@@ -169,6 +174,10 @@ class IMCViewController: UIViewController{
         self.present(alert, animated: true)
     }
     
+    private var controllerHasValidInfo: Bool {
+        return massTextField.hasText && heightTextField.hasText
+    }
+    
     private func validateIMC() -> Double {
         if let mass = massTextField.text, !mass.isEmpty{
             if let height = heightTextField.text, !height.isEmpty{
@@ -195,21 +204,34 @@ class IMCViewController: UIViewController{
     }
     
     @objc private func didTapButtonVC2() {
-        if let mass = massTextField.text, !mass.isEmpty{
-            if let height = heightTextField.text, !height.isEmpty{
-                guard let massConverted = Double(mass) else { return }
-                guard let heightConverted = Double(height) else { return }
-                delegate?.showVC2(massConverted, heightConverted)
-            }
-        }else{
+        if !controllerHasValidInfo {
             willDisplayAnErrorHandlerMessage()
+            return
         }
+        
+        viewModel.converterButtonPressed()
     }
 }
 
 // MARK: - EXTESIONS
 
 extension IMCViewController: UITextFieldDelegate{
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    
+        guard let newValue = textField.text else { return }
+    
+        switch textField.tag {
+        case TextFieldTags.heightTextfield.rawValue:
+            viewModel.userDidUpdateHeitgh(newValue: newValue)
+            
+        case TextFieldTags.massTextfield.rawValue:
+            viewModel.userDidUpdateMass(newValue: newValue)
+        default:
+            return
+        }
+        
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let invalidCharacteres = CharacterSet(charactersIn: "01234567890.").inverted
         return string.rangeOfCharacter(from: invalidCharacteres) == nil
