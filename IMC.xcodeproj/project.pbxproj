@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CD797AE2B1A963500D29313 /* IMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD797AD2B1A963500D29313 /* IMC.swift */; };
 		8E2D6563274841BA003625B9 /* CoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D6562274841BA003625B9 /* CoordinatorManager.swift */; };
 		8E2D6566274841E1003625B9 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D6565274841E1003625B9 /* Coordinator.swift */; };
 		8EA1651A274EC1C900CBCB02 /* IMCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA16519274EC1C900CBCB02 /* IMCViewModel.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CD797AD2B1A963500D29313 /* IMC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMC.swift; sourceTree = "<group>"; };
 		8E2D6562274841BA003625B9 /* CoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorManager.swift; sourceTree = "<group>"; };
 		8E2D6565274841E1003625B9 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		8EA16519274EC1C900CBCB02 /* IMCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCViewModel.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CD797AC2B1A962900D29313 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0CD797AD2B1A963500D29313 /* IMC.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8E2D65692748420F003625B9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +100,7 @@
 				8EDBEB062747DAE800918BB3 /* TemplateView.swift */,
 				8E2D6565274841E1003625B9 /* Coordinator.swift */,
 				8EDBEAF92747D20800918BB3 /* Info.plist */,
+				0CD797AC2B1A962900D29313 /* Models */,
 				8E2D65692748420F003625B9 /* Services */,
 				8EDBEB0B2747DB5100918BB3 /* ViewControllers */,
 				8EA16518274EC1AF00CBCB02 /* ViewModel */,
@@ -178,6 +189,7 @@
 				8EA1651A274EC1C900CBCB02 /* IMCViewModel.swift in Sources */,
 				8E2D6566274841E1003625B9 /* Coordinator.swift in Sources */,
 				8EDBEAF02747D20700918BB3 /* IMCViewController.swift in Sources */,
+				0CD797AE2B1A963500D29313 /* IMC.swift in Sources */,
 				8E2D6563274841BA003625B9 /* CoordinatorManager.swift in Sources */,
 				8EDBEB072747DAE800918BB3 /* TemplateView.swift in Sources */,
 				8EDBEB012747D9B000918BB3 /* ConverterViewController.swift in Sources */,

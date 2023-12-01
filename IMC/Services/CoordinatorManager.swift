@@ -41,10 +41,10 @@ final class CoordinatorManager: Coordinator {
 // MARK: - EXTENSIONS
 
 extension CoordinatorManager: IMCViewControlerDelegate {
-    func showVC2(_ massLibra: Double, _ height: Double) {
-        navigateToConvertViewController(massLibra, height)
+    func showVC2(data: IMC) {
+        navigateToConvertViewController(data.mass, data.height)
     }
-    
+
 
 }
 

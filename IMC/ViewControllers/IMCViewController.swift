@@ -174,48 +174,37 @@ class IMCViewController: UIViewController{
         self.present(alert, animated: true)
     }
     
-    private var controllerHasValidInfo: Bool {
-        return massTextField.hasText && heightTextField.hasText
-    }
-    
-    private func validateIMC() -> Double {
-        if let mass = massTextField.text, !mass.isEmpty{
-            if let height = heightTextField.text, !height.isEmpty{
-                let result = viewModel.IMC(Double(mass) ?? -1.0, Double(height) ?? 1.0)
-                return result
-            }
-            return -1.0
-        }
-        return -1.0
-    }
     
     // MARK: - ACTIONS
     
     @objc private func didTapCalculateButton() {
-        let resultIMC: Double = validateIMC()
-        if resultIMC == -1.0 {
-            willDisplayAnErrorHandlerMessage()
-        }
-        let name = viewModel.changeTextAndImageResult(resultIMC)
-        subtitleResultLabel.text = name.subtitleResultLabel
-        imageResult.image = UIImage(named: name.imageName)
-        subtitleResultLabel.isHidden = false
+        view.endEditing(true) 
+        let result = viewModel.calculateButtonPressed()
         
+        switch result {
+        case .success((let name, let imageName)):
+            subtitleResultLabel.text = name
+            imageResult.image = UIImage(named: imageName)
+            subtitleResultLabel.isHidden = false
+            
+        case .failure:
+            willDisplayAnErrorHandlerMessage()
+            
+        }
     }
     
     @objc private func didTapButtonVC2() {
-        if !controllerHasValidInfo {
-            willDisplayAnErrorHandlerMessage()
-            return
+        view.endEditing(true)
+        viewModel.converterButtonPressed { [weak self ] _ in
+            self?.willDisplayAnErrorHandlerMessage()
         }
-        
-        viewModel.converterButtonPressed()
     }
 }
 
 // MARK: - EXTESIONS
 
-extension IMCViewController: UITextFieldDelegate{
+extension IMCViewController: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
     
         guard let newValue = textField.text else { return }

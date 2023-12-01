@@ -8,15 +8,19 @@
 import Foundation
 
 protocol IMCViewControlerDelegate: AnyObject {
-    func showVC2(_ mass: Double, _ height: Double)
+    func showVC2(data: IMC)
 }
 
 protocol IMCViewModelProtocol {
-    func IMC(_ mass: Double, _ height: Double) -> Double
     func changeTextAndImageResult(_ resultIMC: Double) -> (subtitleResultLabel: String, imageName: String)
-    func converterButtonPressed()
+    func converterButtonPressed(handler: @escaping (IMCError) -> Void)
+    func calculateButtonPressed() -> Result<(String, String), IMCError>
     func userDidUpdateHeitgh(newValue: String)
     func userDidUpdateMass(newValue: String)
+}
+
+enum IMCError: Error {
+    case missingData
 }
 
 class IMCViewModel: IMCViewModelProtocol {
@@ -26,18 +30,25 @@ class IMCViewModel: IMCViewModelProtocol {
     var mass: Double?
     var height: Double?
     
-    func converterButtonPressed() {
-        guard let safeMass = mass else { return }
-        guard let safeHeight = height else { return }
-        delegate?.showVC2(safeMass, safeHeight)
+    func converterButtonPressed(handler: @escaping ((IMCError) -> Void)) {
+        guard let imc = IMC(mass: self.mass, height: self.height) else {
+            handler(.missingData)
+            return
+        }
+        delegate?.showVC2(data: imc)
         
     }
     
-    func IMC(_ mass: Double, _ height: Double) -> Double{
-        return mass/pow(height, 2) * 10000.0
+    func calculateButtonPressed() -> Result<(String, String), IMCError> {
+        guard let imc = IMC(mass: self.mass, height: self.height) else { return .failure(.missingData) }
+        
+        let imcValue = imc.value()
+        return .success(changeTextAndImageResult(imcValue))
+        
     }
     
-    func changeTextAndImageResult(_ resultIMC: Double) -> (subtitleResultLabel: String, imageName: String){
+    
+    internal func changeTextAndImageResult(_ resultIMC: Double) -> (subtitleResultLabel: String, imageName: String) {
         switch resultIMC {
         case 0...20:
             return ("Magro","Magro.png")
