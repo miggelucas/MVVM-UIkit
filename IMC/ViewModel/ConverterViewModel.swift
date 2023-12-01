@@ -10,28 +10,16 @@ import Foundation
 import Combine
 import UIKit
 
-protocol ConverterViewModelProtocol: AnyObject {
-    var mass: CurrentValueSubject<Double, Never> { get }
-    var height: CurrentValueSubject<Double, Never> { get }
-    
-    func pickerValueDidChange(_ newValue: Int)
-    func sliderValueDidChange(_ newValue: Int)
-    func switchValueChanged(_ shouldConvertKgToLb: Bool)
-}
+
 
 class ConverterViewModel: ConverterViewModelProtocol {
     var mass: CurrentValueSubject<Double, Never>
     
     var height: CurrentValueSubject<Double, Never>
     
-    @objc func alo(sender: UISlider) {
-       print("alooo")
-        print(sender.value)
-    }
-    
-    init(mass: Double, height: Double) {
-        self.mass = CurrentValueSubject(mass)
-        self.height = CurrentValueSubject(height)
+    init(imc: IMC) {
+        self.mass = CurrentValueSubject(imc.mass)
+        self.height = CurrentValueSubject(imc.height)
     }
     
     public func pickerValueDidChange(_ newValue: Int) {

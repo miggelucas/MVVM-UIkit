@@ -7,21 +7,6 @@
 
 import Foundation
 
-protocol IMCViewControlerDelegate: AnyObject {
-    func showVC2(data: IMC)
-}
-
-protocol IMCViewModelProtocol {
-    func changeTextAndImageResult(_ resultIMC: Double) -> (subtitleResultLabel: String, imageName: String)
-    func converterButtonPressed(handler: @escaping (IMCError) -> Void)
-    func calculateButtonPressed() -> Result<(String, String), IMCError>
-    func userDidUpdateHeitgh(newValue: String)
-    func userDidUpdateMass(newValue: String)
-}
-
-enum IMCError: Error {
-    case missingData
-}
 
 class IMCViewModel: IMCViewModelProtocol {
     

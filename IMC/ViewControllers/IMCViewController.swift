@@ -7,7 +7,8 @@
 
 import UIKit
 
-class IMCViewController: UIViewController{
+class IMCViewController: UIViewController {
+    
     enum TextFieldTags: Int, CaseIterable {
         case massTextfield, heightTextfield
     }
@@ -178,7 +179,7 @@ class IMCViewController: UIViewController{
     // MARK: - ACTIONS
     
     @objc private func didTapCalculateButton() {
-        view.endEditing(true) 
+        view.endEditing(true)
         let result = viewModel.calculateButtonPressed()
         
         switch result {

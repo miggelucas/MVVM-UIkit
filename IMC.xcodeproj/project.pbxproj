@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0CD797AE2B1A963500D29313 /* IMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD797AD2B1A963500D29313 /* IMC.swift */; };
+		0CD797B12B1AA1FB00D29313 /* IMCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD797B02B1AA1FB00D29313 /* IMCError.swift */; };
+		0CD797B42B1AA22800D29313 /* IMCViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD797B32B1AA22800D29313 /* IMCViewModelProtocol.swift */; };
+		0CD797B62B1AA23D00D29313 /* IMCViewControlerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD797B52B1AA23D00D29313 /* IMCViewControlerDelegate.swift */; };
+		0CD797B82B1AA26500D29313 /* ConverterViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD797B72B1AA26500D29313 /* ConverterViewModelProtocol.swift */; };
 		8E2D6563274841BA003625B9 /* CoordinatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D6562274841BA003625B9 /* CoordinatorManager.swift */; };
 		8E2D6566274841E1003625B9 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E2D6565274841E1003625B9 /* Coordinator.swift */; };
 		8EA1651A274EC1C900CBCB02 /* IMCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA16519274EC1C900CBCB02 /* IMCViewModel.swift */; };
@@ -23,6 +27,10 @@
 
 /* Begin PBXFileReference section */
 		0CD797AD2B1A963500D29313 /* IMC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMC.swift; sourceTree = "<group>"; };
+		0CD797B02B1AA1FB00D29313 /* IMCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCError.swift; sourceTree = "<group>"; };
+		0CD797B32B1AA22800D29313 /* IMCViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCViewModelProtocol.swift; sourceTree = "<group>"; };
+		0CD797B52B1AA23D00D29313 /* IMCViewControlerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCViewControlerDelegate.swift; sourceTree = "<group>"; };
+		0CD797B72B1AA26500D29313 /* ConverterViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewModelProtocol.swift; sourceTree = "<group>"; };
 		8E2D6562274841BA003625B9 /* CoordinatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorManager.swift; sourceTree = "<group>"; };
 		8E2D6565274841E1003625B9 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		8EA16519274EC1C900CBCB02 /* IMCViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCViewModel.swift; sourceTree = "<group>"; };
@@ -55,6 +63,26 @@
 				0CD797AD2B1A963500D29313 /* IMC.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0CD797AF2B1AA1EA00D29313 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				0CD797B02B1AA1FB00D29313 /* IMCError.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		0CD797B22B1AA20E00D29313 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8E2D6565274841E1003625B9 /* Coordinator.swift */,
+				0CD797B32B1AA22800D29313 /* IMCViewModelProtocol.swift */,
+				0CD797B52B1AA23D00D29313 /* IMCViewControlerDelegate.swift */,
+				0CD797B72B1AA26500D29313 /* ConverterViewModelProtocol.swift */,
+				8EDBEAEB2747D20700918BB3 /* AppDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		8E2D65692748420F003625B9 /* Services */ = {
@@ -93,13 +121,13 @@
 		8EDBEAEA2747D20700918BB3 /* IMC */ = {
 			isa = PBXGroup;
 			children = (
-				8EDBEAEB2747D20700918BB3 /* AppDelegate.swift */,
 				8EDBEAED2747D20700918BB3 /* SceneDelegate.swift */,
 				8EDBEAF62747D20800918BB3 /* LaunchScreen.storyboard */,
 				8EDBEAF42747D20800918BB3 /* Assets.xcassets */,
 				8EDBEB062747DAE800918BB3 /* TemplateView.swift */,
-				8E2D6565274841E1003625B9 /* Coordinator.swift */,
 				8EDBEAF92747D20800918BB3 /* Info.plist */,
+				0CD797B22B1AA20E00D29313 /* Protocols */,
+				0CD797AF2B1AA1EA00D29313 /* Enums */,
 				0CD797AC2B1A962900D29313 /* Models */,
 				8E2D65692748420F003625B9 /* Services */,
 				8EDBEB0B2747DB5100918BB3 /* ViewControllers */,
@@ -189,10 +217,14 @@
 				8EA1651A274EC1C900CBCB02 /* IMCViewModel.swift in Sources */,
 				8E2D6566274841E1003625B9 /* Coordinator.swift in Sources */,
 				8EDBEAF02747D20700918BB3 /* IMCViewController.swift in Sources */,
+				0CD797B62B1AA23D00D29313 /* IMCViewControlerDelegate.swift in Sources */,
 				0CD797AE2B1A963500D29313 /* IMC.swift in Sources */,
+				0CD797B42B1AA22800D29313 /* IMCViewModelProtocol.swift in Sources */,
+				0CD797B12B1AA1FB00D29313 /* IMCError.swift in Sources */,
 				8E2D6563274841BA003625B9 /* CoordinatorManager.swift in Sources */,
 				8EDBEB072747DAE800918BB3 /* TemplateView.swift in Sources */,
 				8EDBEB012747D9B000918BB3 /* ConverterViewController.swift in Sources */,
+				0CD797B82B1AA26500D29313 /* ConverterViewModelProtocol.swift in Sources */,
 				8EDBEAEC2747D20700918BB3 /* AppDelegate.swift in Sources */,
 				8EDBEAEE2747D20700918BB3 /* SceneDelegate.swift in Sources */,
 				8EC0FC622754E87C00B090C1 /* ConverterViewModel.swift in Sources */,
