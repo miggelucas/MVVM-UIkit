@@ -20,6 +20,14 @@ class ConverterViewController: UIViewController{
     
     var viewModel: ConverterViewModel
     
+    var mass: Double {
+        viewModel.mass.value
+    }
+    
+    var height: Double {
+        viewModel.height.value
+    }
+    
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: - LIFE CYCLE
@@ -93,7 +101,7 @@ class ConverterViewController: UIViewController{
         navigationItem.title = "ConverterView"
         picker.delegate = self
         picker.dataSource = self
-        picker.selectRow(Int(viewModel.height.value), inComponent: 0, animated: true)
+        picker.selectRow(Int(height), inComponent: 0, animated: true)
         
         converterLabel.text = "Kg to Libra:"
         converterLabel.backgroundColor = .yellow
@@ -107,15 +115,16 @@ class ConverterViewController: UIViewController{
         view.backgroundColor = .systemIndigo
         slider.maximumValue = 600
         slider.minimumValue = 0
+        slider.value = Float(viewModel.mass.value)
         
         valueOfSliderLabel.backgroundColor = .yellow
-        valueOfSliderLabel.text = String(format: "Massa: %.1f", Float(viewModel.mass.value))
+        valueOfSliderLabel.text = String(format: "Massa: %.1f", Float(mass))
         valueOfSliderLabel.textColor = .black
         valueOfSliderLabel.textAlignment = .center
         
         pickerLabel.backgroundColor = .yellow
         pickerLabel.textColor = .black
-        pickerLabel.text = String(format: "Altura: %.1f", Float(viewModel.height.value))
+        pickerLabel.text = String(format: "Altura: %.1f", Float(height))
         pickerLabel.textAlignment = .center
         
         slider.addTarget(self, action: #selector(didChangeSliderValue), for: .valueChanged)
